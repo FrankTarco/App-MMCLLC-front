@@ -1,1 +1,5 @@
-<p>body works!</p>
+<div class="body" [ngClass]="getBodyClass()">
+    <app-add-personal *ngIf="elementoActual == 'personal'"></app-add-personal>
+    <app-add-ingresos *ngIf="elementoActual == 'ingresos'"></app-add-ingresos>
+    <app-add-gastos *ngIf="elementoActual == 'gastos'"></app-add-gastos>
+</div>

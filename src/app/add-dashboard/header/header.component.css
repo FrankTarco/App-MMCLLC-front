@@ -1,0 +1,29 @@
+.time {
+    margin-right: 16px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(228, 228, 228);
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .mainheader{
+  background: rgb(0, 2, 31);
+  position:sticky;
+  position:-webkit-sticky; /* For macOS/iOS Safari */;
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 10; /* Ensure that your app's content doesn't overlap the toolbar */
+  
+  
+  }
+  .brandname
+  {
+    color: rgb(211, 211, 211);
+    padding-top: 1%;
+    padding-left: 1%;
+    font-size: 14px;
+  
+  
+  }

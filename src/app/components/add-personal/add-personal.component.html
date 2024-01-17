@@ -1,0 +1,70 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-subtitle>Modulo para</mat-card-subtitle>
+    <mat-card-title>Personal</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>This card has divider and indeterminate progress as footer</p>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="cheque">
+        <th mat-header-cell *matHeaderCellDef>N° Cheque</th>
+        <td mat-cell *matCellDef="let element"> {{element.numero_cheque}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="persona">
+        <th mat-header-cell *matHeaderCellDef> Persona </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre_persona}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element">S/. {{element.cantidad}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="concepto">
+        <th mat-header-cell *matHeaderCellDef> Concepto </th>
+        <td mat-cell *matCellDef="let element"> {{element.concepto}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="primary" (click)="abrirEditDialog(element)" style="margin-right: 5px;" aria-label="Example icon button with a menu icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" (click)="eliminarPersonal(element.id_personal)" aria-label="Example icon button with a menu icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+       </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions class="mt-4">
+    <button mat-button (click)="abrirModal()">Nuevo registro</button>
+    <button mat-raised-button>Imprimir en PDF</button>
+    <button mat-raised-button>Imprimir en Excel</button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>
+
+
+ 

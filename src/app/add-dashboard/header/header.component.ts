@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  myDate = new Date();
+
+  currentTime: string | undefined;
+
+  ngOnInit() {
+    setInterval(() => {
+      this.currentTime = new Date().toLocaleTimeString();
+    }, 1000);}
+
+
 }
