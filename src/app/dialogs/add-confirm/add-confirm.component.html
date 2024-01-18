@@ -1,0 +1,17 @@
+<div mat-dialog-title class="row">
+    <div class="col-md-12 text-center" >
+        <h4 style="margin-top:-20px;">Mensaje de confirmacion <b>SERVICE MCM LLC</b></h4>
+        <img src="../../../assets/logo.png" alt="" width="50%">
+    </div>
+</div>
+
+<div mat-dialog-content class="text-center">
+    <p style="font-weight: bold; color: black;">{{msg}}</p>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-center">
+    <button mat-raised-button [mat-dialog-close]="false" >Cancelar</button>
+    <button mat-raised-button class="btn-personal" [mat-dialog-close]="true">Si, confirmo</button>
+</div>
+
+

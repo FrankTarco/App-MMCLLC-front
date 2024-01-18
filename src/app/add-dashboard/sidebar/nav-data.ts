@@ -6,18 +6,18 @@ export const navbarData = [
   // },
   {
     routeLink: 'personal',
-    icon: 'fa fa-list-ul',
+    icon: 'fa fa-users',
     label: 'Personal'
   },
   {
     routeLink: 'ingresos',
-    icon: 'fa fa-list-ul',
+    icon: 'fa fa-money-check-alt',
     label: 'Ingresos'
   },
   {
 
     routeLink: 'gastos',
-    icon: ' fa fa-history',
+    icon: ' fa fa-hand-holding-usd',
     label: 'Gastos'
   },
 

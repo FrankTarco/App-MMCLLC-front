@@ -67,25 +67,29 @@
     display: flex;
     align-items: center;
     height: 3rem;
-    color: #14001a;
+    color: #070706;
     text-decoration: none;
     border-radius: 0.625rem;
     transition: all 0.3s ease;
   }
   .sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-icon {
     font-size: 22px;
+    color: #003561;
     width: 2rem;
     min-width: 2rem;
     margin: 0 0.5rem;
     text-align: center;
+    transition: all 0.3s ease;
   }
   .sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-text {
     margin-left: 1.5rem;
   }
-  .sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link {
-    background-color: rgb(0, 2, 31);
+  .sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link,
+  .sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link .sidenav-link-icon {
+    background-color: #003561;
     color: #ffffff;
   }
+
   .active {
     background-color: #23002e;
   }

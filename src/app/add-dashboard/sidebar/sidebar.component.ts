@@ -63,7 +63,6 @@ export class SidebarComponent implements OnInit{
 
   guardarMenuElegido(data:string){
     this.menuService.setElementoActual(data);
-    console.log("guardando >>> ", data);
   }
 
   ngOnInit(): void {

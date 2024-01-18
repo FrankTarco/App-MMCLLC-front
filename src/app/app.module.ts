@@ -17,6 +17,8 @@ import { AddPersonalComponent } from './components/add-personal/add-personal.com
 import { ActionsPersonalComponent } from './dialogs/actions-personal/actions-personal.component';
 import { ActionsGastosComponent } from './dialogs/actions-gastos/actions-gastos.component';
 import { ActionsIngresosComponent } from './dialogs/actions-ingresos/actions-ingresos.component';
+import { AddConfirmComponent } from './dialogs/add-confirm/add-confirm.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ActionsIngresosComponent } from './dialogs/actions-ingresos/actions-ing
     AddPersonalComponent,
     ActionsPersonalComponent,
     ActionsGastosComponent,
-    ActionsIngresosComponent
+    ActionsIngresosComponent,
+    AddConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ import { ActionsIngresosComponent } from './dialogs/actions-ingresos/actions-ing
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
