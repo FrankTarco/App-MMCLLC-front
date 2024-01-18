@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Personal } from 'src/app/models/personal.model';
 import { PersonalService } from 'src/app/services/personal.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-actions-personal',
@@ -13,6 +14,11 @@ export class ActionsPersonalComponent implements OnInit{
 
 
   public currentYear: number = new Date().getFullYear();
+
+  public notyf = new Notyf({duration: 2000,position: {x: 'right',y: 'top',},
+    types: [{type: 'success',background: '#003561',dismissible: true},
+      {type: 'error',background: '#c70000',dismissible: true}
+    ]});
 
   objPersonal:Personal = {
     numero_cheque:"",
@@ -58,11 +64,12 @@ maxDate= new Date;
       this.personalService.actualizar(this.objPersonal).subscribe(  
         x=>{
           if(x.status){
-            alert(x.mensaje);
+            
+            this.notyf.success(x.mensaje)
             this.dialogRef.close();
           }
           else{
-            alert(x.mensaje);
+            this.notyf.error(x.mensaje)
           }
         }
       )
@@ -72,11 +79,11 @@ maxDate= new Date;
       this.personalService.registrar(this.objPersonal).subscribe(  
         x=>{
           if(x.status){
-            alert(x.mensaje);
+            this.notyf.success(x.mensaje)
             this.dialogRef.close();
           }
           else{
-            alert(x.mensaje);
+            this.notyf.error(x.mensaje)
           }
         }
       )

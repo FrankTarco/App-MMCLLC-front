@@ -5,9 +5,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Notyf } from 'notyf';
 import { ActionsPersonalComponent } from 'src/app/dialogs/actions-personal/actions-personal.component';
 import { Personal } from 'src/app/models/personal.model';
 import { ConfirmService } from 'src/app/services/confirm.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { PdfService } from 'src/app/services/pdf.service';
 import { PersonalService } from 'src/app/services/personal.service';
 
@@ -36,19 +38,16 @@ export class AddPersonalComponent implements OnInit{
 
   total = 0.00;
 
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
-
-  constructor(private dialog:MatDialog,private personalService:PersonalService,private confirmService:ConfirmService,private pdfService:PdfService){
+  notyf = new Notyf({duration: 2000,position: {x: 'right',y: 'top',},
+    types: [{type: 'success',background: '#003561',dismissible: true},
+      {type: 'error',background: '#c70000',dismissible: true}
+    ]});
+  constructor(private dialog:MatDialog,private personalService:PersonalService,private confirmService:ConfirmService,private pdfService:PdfService,private excelService:ExcelService){
   }
 
   ngOnInit(): void {
     this.listarDatos();
   }
-
-
-
 
   applyFilter() {
     this.listarDatos();
@@ -70,11 +69,11 @@ export class AddPersonalComponent implements OnInit{
             this.personalService.eliminar(id).subscribe(
               x=>{
                 if(x.status){
-                  alert(x.mensaje);
+                  this.notyf.success(x.mensaje)
                   this.listarDatos();
                 }
                 else{
-                  alert(x.mensaje)
+                  this.notyf.error(x.mensaje)
                 }
               }
             )
@@ -138,5 +137,10 @@ export class AddPersonalComponent implements OnInit{
         }
       )
     } 
+
+    getExcel(){
+      let data = document.getElementById("table-data");
+      this.excelService.exportExcel(data)
+    }
 
 }
