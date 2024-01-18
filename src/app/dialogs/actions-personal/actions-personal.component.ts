@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Personal } from 'src/app/models/personal.model';
 import { PersonalService } from 'src/app/services/personal.service';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-actions-personal',
@@ -10,17 +11,39 @@ import { PersonalService } from 'src/app/services/personal.service';
 })
 export class ActionsPersonalComponent implements OnInit{
 
+
+  public currentYear: number = new Date().getFullYear();
+
   objPersonal:Personal = {
     numero_cheque:"",
     nombre_persona:"",
     cantidad:0,
     concepto:"",
+    fecha:''
 
   }
 
-  constructor(private personalService:PersonalService,private dialogRef:MatDialogRef<ActionsPersonalComponent>, @Inject(MAT_DIALOG_DATA) public data:any){
+  formRegistra = this.formBuilder.group({
+    validaCheque: ['',[Validators.required, Validators.pattern(/^\d{8,10}$/)]],
+    validaNombre: ['',[Validators.required, Validators.pattern('[a-zA-ZáéíóúñüÁÉÍÓÚÑÜ ]{3,120}')]],
+    validaCantidad: ['',[Validators.required, Validators.min(0.0), Validators.max(100.0)]],
+    validaConcepto: ['',[Validators.required, Validators.pattern('[a-zA-ZáéíóúñüÁÉÍÓÚÑÜ ]{3,200}')]],
+    validafecha: [null,[Validators.required]]
+  })
+maxDate= new Date;
+
+  
+
+  constructor(private personalService:PersonalService,
+    private dialogRef:MatDialogRef<ActionsPersonalComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data:any,private formBuilder:FormBuilder){
 
   }
+  
+
+  
+
+
   ngOnInit(): void {
     if(this.data){
       this.objPersonal = this.data;

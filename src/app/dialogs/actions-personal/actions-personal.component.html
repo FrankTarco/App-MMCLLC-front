@@ -4,44 +4,81 @@
     <div class="col-md-12"><h4 class="m-3">Formulario para el personal</h4></div>
     <mat-divider></mat-divider>
 </div>
-
+<form id="formBus" [formGroup]="formRegistra">
 <div mat-dialog-content>
     <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Ingrese cheque</mat-label>
-        <input matInput placeholder="Cheque" name="cheque" [(ngModel)]="objPersonal.numero_cheque">
-        <mat-hint>Hint</mat-hint>
+        <input matInput placeholder="Cheque" name="cheque" [(ngModel)]="objPersonal.numero_cheque" formControlName="validaCheque" name="cheque">
+        <mat-hint style="color:red" *ngIf="formRegistra.controls.validaCheque.touched">
+          <span *ngIf="formRegistra.controls.validaCheque.hasError('required')">
+          El Nùmero de Cheque es requerido *
+          </span>
+          <span *ngIf="formRegistra.controls.validaCheque.hasError('pattern')">
+          El Cheque debe contener entre 8 y 10 digitos.
+          </span>
+      </mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Nombre completo de la persona</mat-label>
-        <input matInput placeholder="Nombre completo" [(ngModel)]="objPersonal.nombre_persona">
-        <mat-hint>Hint</mat-hint>
+        <input matInput placeholder="Nombre completo" [(ngModel)]="objPersonal.nombre_persona" formControlName="validaNombre" name="nombre">
+        <mat-hint style="color:red" *ngIf="formRegistra.controls.validaNombre.touched">
+          <span *ngIf="formRegistra.controls.validaNombre.hasError('required')">
+          El Nombre Completo es requerido *
+          </span>
+          <span *ngIf="formRegistra.controls.validaNombre.hasError('pattern')">
+          Ingrese caracteres alfabeticos de 3 a 120 caracteres.
+          </span>
+      </mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Cantidad</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="objPersonal.cantidad">
-        <mat-hint>Hint</mat-hint>
+        <input matInput placeholder="Placeholder" [(ngModel)]="objPersonal.cantidad" formControlName="validaCantidad" name="cantidad">
+        <mat-hint style="color:red" *ngIf="formRegistra.controls.validaCantidad.touched">
+          <span *ngIf="formRegistra.controls.validaCantidad.hasError('required')">
+          La cantidad es requerido *
+          </span>
+          <span *ngIf="formRegistra.controls.validaCantidad.hasError('min')">
+          Solo numeros entre 1 y 100.
+          </span>
+          <span *ngIf="formRegistra.controls.validaCantidad.hasError('max')">
+            Solo numeros entre 1 y 100.
+            </span>
+      </mat-hint>
       </mat-form-field>
 
       <mat-form-field style="width: 100%;">
         <mat-label>Concepto</mat-label>
-        <textarea matInput [(ngModel)]="objPersonal.concepto"></textarea>
+        <textarea matInput [(ngModel)]="objPersonal.concepto" formControlName="validaConcepto" name="concepto"></textarea>
+        <mat-hint style="color:red" *ngIf="formRegistra.controls.validaConcepto.touched">
+          <span *ngIf="formRegistra.controls.validaConcepto.hasError('required')">
+          El concepto es requerido *
+          </span>
+          <span *ngIf="formRegistra.controls.validaConcepto.hasError('pattern')">
+          Caracteres entre 3 y 200.
+          </span>
+      </mat-hint>
       </mat-form-field>
 
       <mat-form-field class="example-full-width" style="width: 100%;">
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="objPersonal.fecha">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="objPersonal.fecha" [max]="maxDate" formControlName="validafecha">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+       
       </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
     <button mat-raised-button type="button" [mat-dialog-close]="false" >Cancel</button>
-    <button mat-raised-button color="primary" (click)="registrarPersonal()">{{ data ? 'Actualizar' : 'Registrar'}}</button>
+    <button mat-raised-button color="primary" (click)="registrarPersonal()" [disabled]="formRegistra.invalid">{{ data ? 'Actualizar' : 'Registrar'}}</button>
 </div>
+
+</form>
+
+
 
