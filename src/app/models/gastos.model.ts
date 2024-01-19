@@ -5,6 +5,6 @@ export class Gastos {
 	numero_boleta?:string;
 	cantidad?:number;
 	concepto?:string;
-    fecha?:Date;
+    fecha?:string;
 
 }
