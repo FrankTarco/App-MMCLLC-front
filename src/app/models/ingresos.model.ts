@@ -6,6 +6,6 @@ export class Ingresos {
 	nombre_propiedad?:string;
 	cantidad?:number;
 	concepto?:string;
-	fecha?:Date;
+	fecha?:string;
 
 }
