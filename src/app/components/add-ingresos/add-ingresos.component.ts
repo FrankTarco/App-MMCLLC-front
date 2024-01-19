@@ -54,7 +54,9 @@ export class AddIngresosComponent implements OnInit {
 
   eliminarPersonal(id:number){
       this.confirmService.abrirDialog('¿Estas seguro de eliminar el ingreso?').afterClosed().subscribe(
+        
         res=>{
+          console.log(id)
           if(res){
             this.ingresoService.eliminar(id).subscribe(
               x=>{
