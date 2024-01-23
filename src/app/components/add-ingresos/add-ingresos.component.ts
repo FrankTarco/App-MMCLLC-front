@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Notyf } from 'notyf';
 import { ActionsIngresosComponent } from 'src/app/dialogs/actions-ingresos/actions-ingresos.component';
+import { ReporteResponse } from 'src/app/models/reporte-response.model';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import { IngresosService } from 'src/app/services/ingresos.service';
@@ -119,12 +120,20 @@ export class AddIngresosComponent implements OnInit {
 
 
     getPdf(){
-      this.pdfService.descargarPdf(this.nameSearch,this.anioSearch,this.total).subscribe(
+      const data:ReporteResponse={
+        titulo:'Reporte de Ingresos',
+        cabezera:['Cheque','Managment', 'Propiedad', 'Cantidad', 'Concepto','Fecha'],
+        data:this.dataSource.data,
+        total:this.total,
+        type:'ingresos'
+      }
+      
+      this.pdfService.descargarPdf(data).subscribe(
         (data)=>{
           let download = window.URL.createObjectURL(data)
           let link = document.createElement('a')
           link.href=download
-          link.download="reporte.pdf"
+          link.download="reporteingresos.pdf"
           link.click()
         }
       )

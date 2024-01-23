@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Notyf } from 'notyf';
 import { ActionsGastosComponent } from 'src/app/dialogs/actions-gastos/actions-gastos.component';
+import { ReporteResponse } from 'src/app/models/reporte-response.model';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import { GastosService } from 'src/app/services/gastos.service';
@@ -117,17 +118,25 @@ export class AddGastosComponent implements OnInit {
 
 
     getPdf(){
-      this.pdfService.descargarPdf(this.nameSearch,this.anioSearch,this.total).subscribe(
+      const data:ReporteResponse={
+        titulo:'Reporte de Gastos',
+        cabezera:['Tienda','Boleta', 'Cantidad', 'Concepto', 'Fecha'],
+        data:this.dataSource.data,
+        total:this.total,
+        type:'gastos'
+      }
+      
+      this.pdfService.descargarPdf(data).subscribe(
         (data)=>{
           let download = window.URL.createObjectURL(data)
           let link = document.createElement('a')
           link.href=download
-          link.download="reporte.pdf"
+          link.download="reporteGastos.pdf"
           link.click()
         }
       )
-    } 
-
+    }
+ 
     getExcel(){
       let data = document.getElementById("table-data");
       this.excelService.exportExcel(data)

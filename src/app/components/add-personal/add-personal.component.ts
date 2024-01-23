@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Notyf } from 'notyf';
 import { ActionsPersonalComponent } from 'src/app/dialogs/actions-personal/actions-personal.component';
 import { Personal } from 'src/app/models/personal.model';
+import { ReporteResponse } from 'src/app/models/reporte-response.model';
 import { ConfirmService } from 'src/app/services/confirm.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import { PdfService } from 'src/app/services/pdf.service';
@@ -127,7 +128,15 @@ export class AddPersonalComponent implements OnInit{
 
 
     getPdf(){
-      this.pdfService.descargarPdf(this.nameSearch,this.anioSearch,this.total).subscribe(
+      const data:ReporteResponse={
+        titulo:'Reporte del Personal',
+        cabezera:['Cheque','Persona', 'Cantidad', 'Concepto', 'Fecha'],
+        data:this.dataSource.data,
+        total:this.total,
+        type:'personal'
+      }
+      
+      this.pdfService.descargarPdf(data).subscribe(
         (data)=>{
           let download = window.URL.createObjectURL(data)
           let link = document.createElement('a')
