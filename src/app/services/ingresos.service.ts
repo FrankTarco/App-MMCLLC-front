@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppSettings } from '../app.settings';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Ingresos } from '../models/ingresos.model';
 import { Observable } from 'rxjs';
 
@@ -29,4 +29,10 @@ export class IngresosService {
     return this.http.delete(url+'/'+id)
   }
 
+  consultaDinamica(nombre:string,anio:string):Observable<Ingresos[]>{
+    const params = new HttpParams()
+    .set("nombre", nombre)
+    .set("anio", anio);
+    return this.http.get<Ingresos[]>(url+'/consulta', {params})
+  }
 }
