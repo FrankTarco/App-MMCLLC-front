@@ -1,0 +1,32 @@
+footer{
+    background: #003561;
+    color: white;
+}
+
+.redes a{
+    transition: .5s all ease-in-out;
+}
+.redes a:hover {
+    color: white;
+}
+
+h6{
+    color: #9eff03;
+    font-size: 13px;
+}
+
+.red a{
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: white;
+    transition: .5s all ease-in-out;
+}
+
+.red a:hover{
+    color: #9eff03;
+}
+
+.foot p{
+    font-size: 13px;
+}

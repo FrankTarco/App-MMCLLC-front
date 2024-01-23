@@ -256,9 +256,6 @@ body {
 /*              FEATURES              */
 /* ********************************** */
 .container-features {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 3rem;
 	padding: 3rem 3rem;
 }
 
@@ -306,9 +303,6 @@ body {
 }
 
 .container-categories {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 3rem;
     padding: 0 3rem;
 }
 
@@ -882,8 +876,8 @@ body {
 /*       MEDIA QUERIES -- 768px       */
 /* ********************************** */
 @media (max-width: 768px) {
-	html {
-		font-size: 55%;
+	body {
+		font-size: 13px;
 	}
 
 	.hero {
@@ -985,8 +979,8 @@ body {
 /*       MEDIA QUERIES -- 468px       */
 /* ********************************** */
 @media (max-width: 468px) {
-	html {
-		font-size: 42.5%;
+	body {
+		font-size: 13px;
 	}
 
 	.content-banner {
@@ -995,7 +989,7 @@ body {
 	}
 
 	.heading-1 {
-		font-size: 2.8rem;
+		font-size: 17px;
 	}
 
 	.card-feature {

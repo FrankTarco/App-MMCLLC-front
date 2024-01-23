@@ -19,6 +19,12 @@ import { ActionsGastosComponent } from './dialogs/actions-gastos/actions-gastos.
 import { ActionsIngresosComponent } from './dialogs/actions-ingresos/actions-ingresos.component';
 import { AddConfirmComponent } from './dialogs/add-confirm/add-confirm.component';
 import { DatePipe } from '@angular/common';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { AddFooterComponent } from './components/add-footer/add-footer.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { AddSliderComponent } from './components/add-slider/add-slider.component';
+import { AddComparativeComponent } from './components/add-comparative/add-comparative.component';
+import { AddInfoComponent } from './components/add-info/add-info.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { DatePipe } from '@angular/common';
     ActionsPersonalComponent,
     ActionsGastosComponent,
     ActionsIngresosComponent,
-    AddConfirmComponent
+    AddConfirmComponent,
+    MainPageComponent,
+    AddFooterComponent,
+    MainHeaderComponent,
+    AddSliderComponent,
+    AddComparativeComponent,
+    AddInfoComponent
   ],
   imports: [
     BrowserModule,
